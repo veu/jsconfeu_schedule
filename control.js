@@ -121,7 +121,7 @@ app.controller('TrackController', function ($rootScope, $scope, $window, convert
 
     converter.get(function (entries) {
         $scope.schedule = entries;
-    });
+    }, $scope.track !== 'back');
 
 
     var content = document.querySelector('.mdl-layout__content');
