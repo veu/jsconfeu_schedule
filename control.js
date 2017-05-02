@@ -20,11 +20,12 @@ app.service('converter', function ($rootScope, $http) {
         'H': 'url'
     };
     var columnsSide = {
-        'J': 'time',
-        'K': 'duration',
-        'N': 'who',
-        'O': 'title',
-        'Q': 'url'
+        'H': 'time',
+        'I': 'duration',
+        'J': 'nr',
+        'L': 'who',
+        'M': 'title',
+        'N': 'url'
     }
     var isFirstGet = true;
 
