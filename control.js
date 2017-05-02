@@ -36,7 +36,7 @@ app.service('converter', function ($rootScope, $http) {
             var rowNr = entry.title.$t.substr(1);
             var col = entry.title.$t[0];
             var row;
-            if (col < 'J') {
+            if (col < 'H') {
                 row = backSchedule[rowNr] || (backSchedule[rowNr] = {});
                 if (col in columns) {
                     row[columns[col]] = entry.content.$t;
