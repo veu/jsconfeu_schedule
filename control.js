@@ -46,7 +46,7 @@ app.service('converter', function ($rootScope, $http) {
             } else {
                 row = sideSchedule[rowNr] || (sideSchedule[rowNr] = {});
                 if (col in columnsSide) {
-                    if (columns[col] === 'title' && linkMap.has(entry.content.$t)) {
+                    if (columnsSide[col] === 'title' && linkMap.has(entry.content.$t)) {
                         row.url = linkMap.get(entry.content.$t);
                     }
                     row[columnsSide[col]] = entry.content.$t;
