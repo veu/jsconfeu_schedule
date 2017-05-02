@@ -79,7 +79,7 @@ app.service('converter', function ($rootScope, $http) {
                 if (entry.time) {
                     entry.time = entry.time.replace(/^'/,'');
                 }
-                entry.section = groupedSchedule.length - 1;
+                entry.section = groupedSchedule.length - 2;
                 section.entries.push(entry);
             }
         });
