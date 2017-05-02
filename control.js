@@ -11,21 +11,20 @@ app.run(function ($rootScope) {
 });
 
 app.service('converter', function ($rootScope, $http) {
+    var linkMap = new Map(links);
     var columns = {
         'A': 'time',
         'B': 'duration',
         'C': 'nr',
         'E': 'who',
-        'F': 'title',
-        'H': 'url'
+        'F': 'title'
     };
     var columnsSide = {
         'H': 'time',
         'I': 'duration',
         'J': 'nr',
         'L': 'who',
-        'M': 'title',
-        'N': 'url'
+        'M': 'title'
     }
     var isFirstGet = true;
 
@@ -39,11 +38,17 @@ app.service('converter', function ($rootScope, $http) {
             if (col < 'H') {
                 row = backSchedule[rowNr] || (backSchedule[rowNr] = {});
                 if (col in columns) {
+                    if (columns[col] === 'title' && linkMap.has(entry.content.$t)) {
+                        row.url = linkMap.get(entry.content.$t);
+                    }
                     row[columns[col]] = entry.content.$t;
                 }
             } else {
                 row = sideSchedule[rowNr] || (sideSchedule[rowNr] = {});
                 if (col in columnsSide) {
+                    if (columns[col] === 'title' && linkMap.has(entry.content.$t)) {
+                        row.url = linkMap.get(entry.content.$t);
+                    }
                     row[columnsSide[col]] = entry.content.$t;
                 }
             }

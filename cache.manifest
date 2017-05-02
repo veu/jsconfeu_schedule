@@ -1,8 +1,9 @@
 CACHE MANIFEST
-#version 27
+#version 28
 CACHE:
 index.html
 control.js
+links.js
 
 //storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css
 //fonts.googleapis.com/icon?family=Material+Icons

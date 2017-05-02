@@ -13,6 +13,7 @@
 
 <script src="//storage.googleapis.com/code.getmdl.io/1.0.4/material.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js"></script>
+<script src="links.js"></script>
 <script src="control.js"></script>
 <style>
 a.mdl-layout-title { color: white; text-decoration: none; font-weight: bold; }
@@ -51,8 +52,11 @@ i.material-icons { position: absolute; top: 0px; right: 12px; }
                 <div class="line mdl-grid" ng-repeat="row in section.entries track by $index" ng-if="!section.hidden" ng-class="selected(row)">
                     <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone" ng-bind="row.time"></div>
                     <div class="mdl-cell mdl-cell--11-col mdl-cell--11-col-tablet mdl-cell--11-col-phone">
-                        <span ng-if="row.title && row.url"><em ng-bind="row.who"></em><br><a href="{{row.url}}" ng-if="row.url" ng-bind="row.title"></a></span>
-                        <span ng-if="row.title && !row.url"><em ng-bind="row.who"></em><br><span ng-bind="row.title"></span></span>
+                        <span ng-if="row.title">
+                            <em ng-bind="row.who"></em><br>
+                            <a href="{{row.url}}" ng-if="row.url" ng-bind="row.title"></a>
+                            <span ng-if="!row.url" ng-bind="row.title"></span>
+                        </span>
                         <em ng-if="!row.title" ng-bind="row.who"></em>
                     </div>
                 </div>
