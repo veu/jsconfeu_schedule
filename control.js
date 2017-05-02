@@ -138,16 +138,14 @@ app.controller('TrackController', function ($rootScope, $scope, $window, convert
         var time = entry.time.split('.');
         var now = new Date();
 
-        var start = new Date('2015-09-25 00:00:00');
-        start.setHours(entry.section * 24 + +time[0]);
-        start.setMinutes(+time[1]);
+        var start = new Date();
+        start.setHours(entry.section * 24 + +time[0], +time[1], 0, 0);
         if (+now < +start) {
             return [];
         }
 
-        var end = new Date('2015-09-25 00:00:00');
-        end.setHours(entry.section * 24 + +time[0]);
-        end.setMinutes(+time[1] + +entry.duration);
+        var end = new Date();
+        end.setHours(entry.section * 24 + +time[0], +time[1] + +entry.duration, 0, 0);
         if (+now >= +end) {
             return [];
         }
