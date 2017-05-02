@@ -64,7 +64,7 @@ app.service('converter', function ($rootScope, $http) {
         var groupedSchedule = [];
         var section;
         schedule.forEach(function (entry) {
-            if (!entry.who && entry.time && entry.time.indexOf('Day') == 0) {
+            if (!entry.who && entry.time && entry.time.indexOf('Day') === 0) {
                 var index = groupedSchedule.length;
                 section = {
                     title: entry.time,
@@ -79,7 +79,7 @@ app.service('converter', function ($rootScope, $http) {
                 if (entry.time) {
                     entry.time = entry.time.replace(/^'/,'');
                 }
-                entry.section = groupedSchedule.length - 2;
+                entry.section = groupedSchedule.length - 1;
                 section.entries.push(entry);
             }
         });
@@ -139,13 +139,13 @@ app.controller('TrackController', function ($rootScope, $scope, $window, convert
         var time = entry.time.split('.');
         var now = new Date();
 
-        var start = new Date();
+        var start = new Date("2017-05-05T00:00:00+02:00");
         start.setHours(entry.section * 24 + +time[0], +time[1], 0, 0);
         if (+now < +start) {
             return [];
         }
 
-        var end = new Date();
+        var end = new Date("2017-05-05T00:00:00+02:00");
         end.setHours(entry.section * 24 + +time[0], +time[1] + +entry.duration, 0, 0);
         if (+now >= +end) {
             return [];
