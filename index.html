@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="app" manifest="cache.manifest">
+<head>
+<title>JSConf EU 2015</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="//storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
+<link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="shortcut icon" sizes="196x196" href="js.eu.196.png">
+<script src="//storage.googleapis.com/code.getmdl.io/1.0.4/material.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js"></script>
+<script src="control.js"></script>
+<style>
+a.mdl-layout-title { color: white; text-decoration: none; font-weight: bold; }
+div.mdl-layout__header-row { padding-left: 16px; }
+footer { padding: 5px !important; }
+.mdl-grid { border-bottom: 1px solid rgba(0, 0, 0, 0.117647); }
+strong.mdl-navigation__link { font-weight: bold; }
+.mdl-cell--12-col { color: rgb(255,64,129); font-size: 15px; position: relative; }
+.mdl-grid.selected { background: #fceff4; }
+i.material-icons { position: absolute; top: 0px; right: 12px; }
+</style>
+</head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" ng-controller="TrackController">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <a href="http://2015.jsconf.eu" class="mdl-layout-title">JSConf EU</a></span>
+                <div class="mdl-layout-spacer"></div>
+                <nav class="mdl-navigation">
+                    <strong ng-if="track=='back'" class="mdl-navigation__link">Back Track</strong>
+                    <a ng-if="track=='back'" class="mdl-navigation__link" href="#" ng-click="switchTrack('side')">Side Track</a>
+                    <a ng-if="track=='side'" class="mdl-navigation__link" href="#" ng-click="switchTrack('back')">Back Track</a>
+                    <strong ng-if="track=='side'" class="mdl-navigation__link" ng-click="switchTrack('side')">Side Track</strong>
+                </nav>
+            </div>
+        </header>
+        <main class="mdl-layout__content">
+            <div ng-repeat="section in schedule track by $index">
+                <div class="mdl-grid" colspan="2" ng-click="toggle(section)">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <strong>{{section.title}}</strong>
+                        <i class="material-icons" ng-if="section.entries.length && section.hidden">add_circle</i>
+                        <i class="material-icons" ng-if="section.entries.length && !section.hidden">remove_circle</i>
+                    </div>
+                </div>
+                <div class="line mdl-grid" ng-repeat="row in section.entries track by $index" ng-if="!section.hidden" ng-class="selected(row)">
+                    <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone" ng-bind="row.time"></div>
+                    <div class="mdl-cell mdl-cell--11-col mdl-cell--11-col-tablet mdl-cell--11-col-phone">
+                        <span ng-if="row.title && row.url"><em ng-bind="row.who"></em><br><a href="{{row.url}}" ng-if="row.url" ng-bind="row.title"></a></span>
+                        <span ng-if="row.title && !row.url"><em ng-bind="row.who"></em><br><span ng-bind="row.title"></span></span>
+                        <em ng-if="!row.title" ng-bind="row.who"></em>
+                    </div>
+                </div>
+            </div>
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    Unofficial JSConf EU <a href="http://jsconfeu.monometric.net/#/back-track">schedule viewer</a>
+                    by <a href="https://twitter.com/veubeke">Rebecca</a>.
+                </div>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+CACHE MANIFEST
+#version 20
+CACHE:
+index.html
+control.js
+
+//storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css
+//fonts.googleapis.com/icon?family=Material+Icons
+//storage.googleapis.com/code.getmdl.io/1.0.4/material.js
+//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js
+
+NETWORK:
+*
