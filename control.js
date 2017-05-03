@@ -146,7 +146,7 @@ app.controller('TrackController', function ($rootScope, $scope, $window, convert
 
 
     $scope.selected = function (entry) {
-        var classes = $rootScope.highlighted[entry.title || entry.who] ? ['highlighted'] : [];
+        var classes = $rootScope.highlighted[entry.nr] ? ['highlighted'] : [];
 
         if (!entry.time || !entry.duration) {
             return classes;
@@ -187,8 +187,10 @@ app.controller('TrackController', function ($rootScope, $scope, $window, convert
     };
 
     $scope.toggleHighlight = function (entry) {
-        var key = entry.title || entry.who;
-        $rootScope.highlighted[key] = !$rootScope.highlighted[key];
+        if (!entry.nr) {
+            return;
+        }
+        $rootScope.highlighted[entry.nr] = !$rootScope.highlighted[entry.nr];
         localStorage.highlighted = JSON.stringify($rootScope.highlighted);
     }
 });
