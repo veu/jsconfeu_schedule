@@ -4,9 +4,18 @@ app.run(function ($rootScope) {
     $rootScope.hidden = {'side': [], 'back': []};
 
     if (localStorage.hidden) {
-        $rootScope.hidden = JSON.parse(localStorage.hidden);
+        try {
+            $rootScope.hidden = JSON.parse(localStorage.hidden);
+        } catch (e) {}
     } else {
         localStorage.hidden = JSON.stringify($rootScope.hidden);
+    }
+
+    $rootScope.highlighted = {};
+    if (localStorage.highlighted) {
+        try {
+            $rootScope.highlighted = JSON.parse(localStorage.highlighted);
+        } catch (e) {}
     }
 });
 
@@ -137,8 +146,10 @@ app.controller('TrackController', function ($rootScope, $scope, $window, convert
 
 
     $scope.selected = function (entry) {
+        var classes = $rootScope.highlighted[entry.title || entry.who] ? ['highlighted'] : [];
+
         if (!entry.time || !entry.duration) {
-            return [];
+            return classes;
         }
 
         var time = entry.time.split('.');
@@ -147,16 +158,16 @@ app.controller('TrackController', function ($rootScope, $scope, $window, convert
         var start = new Date("2017-05-05T00:00:00+02:00");
         start.setHours(entry.section * 24 + +time[0], +time[1], 0, 0);
         if (+now < +start) {
-            return [];
+            return classes;
         }
 
         var end = new Date("2017-05-05T00:00:00+02:00");
         end.setHours(entry.section * 24 + +time[0], +time[1] + +entry.duration, 0, 0);
         if (+now >= +end) {
-            return [];
+            return classes;
         }
 
-        return ['selected'];
+        return classes.concat(['selected']);
     };
 
     $scope.switchTrack = function (track) {
@@ -174,4 +185,10 @@ app.controller('TrackController', function ($rootScope, $scope, $window, convert
         $rootScope.hidden[$scope.track][section.index] = section.hidden = !section.hidden;
         localStorage.hidden = JSON.stringify($rootScope.hidden);
     };
+
+    $scope.toggleHighlight = function (entry) {
+        var key = entry.title || entry.who;
+        $rootScope.highlighted[key] = !$rootScope.highlighted[key];
+        localStorage.highlighted = JSON.stringify($rootScope.highlighted);
+    }
 });
