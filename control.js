@@ -146,7 +146,7 @@ app.controller('TrackController', function ($rootScope, $scope, $window, convert
 
 
     $scope.selected = function (entry) {
-        var classes = $rootScope.highlighted[entry.nr] ? ['highlighted'] : [];
+        var classes = $rootScope.highlighted[entry.section + '.' + entry.nr] ? ['highlighted'] : [];
 
         if (!entry.time || !entry.duration) {
             return classes;
@@ -186,11 +186,12 @@ app.controller('TrackController', function ($rootScope, $scope, $window, convert
         localStorage.hidden = JSON.stringify($rootScope.hidden);
     };
 
-    $scope.toggleHighlight = function (entry) {
-        if (!entry.nr) {
+    $scope.toggleHighlight = function (entry, event) {
+        if (event.target.tagName === 'A' || !entry.nr) {
             return;
         }
-        $rootScope.highlighted[entry.nr] = !$rootScope.highlighted[entry.nr];
+        var key = entry.section + '.' + entry.nr;
+        $rootScope.highlighted[key] = !$rootScope.highlighted[key];
         localStorage.highlighted = JSON.stringify($rootScope.highlighted);
     }
 });

@@ -50,8 +50,8 @@ i.material-icons { position: absolute; top: 0px; right: 12px; }
                         <i class="material-icons" ng-if="section.entries.length && !section.hidden">remove_circle</i>
                     </div>
                 </div>
-                <div class="line mdl-grid" ng-repeat="row in section.entries track by $index" ng-if="!section.hidden" ng-class="selected(row)">
-                    <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone" ng-bind="row.time" ng-click="toggleHighlight(row)"></div>
+                <div class="line mdl-grid" ng-repeat="row in section.entries track by $index" ng-if="!section.hidden" ng-class="selected(row)" ng-click="toggleHighlight(row, $event)">
+                    <div class="mdl-cell mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone" ng-bind="row.time"></div>
                     <div class="mdl-cell mdl-cell--11-col mdl-cell--11-col-tablet mdl-cell--11-col-phone">
                         <span ng-if="row.title">
                             <em ng-bind="row.who"></em><br>
