@@ -8,7 +8,7 @@ const links = [
     ["How To Be A Web A/V Artist", "http://2017.jsconf.eu/speakers/ruth-john-how-to-be-a-web-av-artist.html"],
     ["Pavlov’s Dog & Foucault’s Panopticon: Hacking My Anxiety With Open-Source Technology", "http://2017.jsconf.eu/speakers/jessica-tran-pavlovs-dog-foucaults-panopticon-hacking-my-anxiety-with-opensource-technology.html"],
     ["Building High-Quality JavaScript Tools", "http://2017.jsconf.eu/speakers/chris-pojer-building-high-quality-javascript-tools.html"],
-    ["knock-knock-who-there-file-compression-TALK-FINAL-4.tar.trz.bz2.gz", "http://knock-knock-who-there-file-compression-TALK-FINAL-4.tar.trz.bz2.gz"],
+    ["knock-knock-who-there-file-compression-TALK-FINAL-4.tar.trz.bz2.gz", "http://2017.jsconf.eu/speakers/irina-shestak-knockknockwhotherefilecompressiontalkfinal4tartrzbz2gz.html"],
     ["Dynamic video in the browser", "http://2017.jsconf.eu/speakers/matthew-shotton-dynamic-video-in-the-browser.html"],
     ["Keeping passwords safe in 2017", "http://2017.jsconf.eu/speakers/emil-bay-keeping-passwords-safe-in-2017.html"],
     ["You don't need AMP for that", "http://2017.jsconf.eu/speakers/chen-shay-you-dont-need-amp-for-that.html"],
